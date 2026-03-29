@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User{
+  id                        String    @id @default(uuid())
+  name                      String
+  email                     String    @unique 
+  password                  String                 
+  isVerified                Boolean @default(false)
+  verificationToken         String?
+  verificationTokenExpires  DateTime?
+  refresToken               String?
+  createdAt                 DateTime @default(now())
+
+  ownedOrganizations  Organization[]
+  memberships         Member[]
+}
+
+model Member{
+  id                   String  @id @default(uuid())
+  userId               String?         
+  organizationId       String
+  role                 MemberRole  @default(member)
+  pointsBalance        Int  @default(0)  
+  inviteToken          String? @unique
+  inviteTokenExpires   DateTime?
+  inviteStatus         InviteStatus @default(pending)
+  joinedAt             DateTime?
+
+  user  User? @relation(fields: [userId], references: [id])
+  organization  Organization  @relation(fields: [organizationId], references: [id])
+
+  sentTransaction Transaction[] @relation("FromMember")
+  recivedTransactions Transaction[] @relation("ToMember")
+}
+
+model Organization{
+  id                  String  @id @default(uuid())
+  name                String
+  ownerId             String
+  totalPointsIssued   Int @default(0)
+  createdAt           DateTime  @default(now())
+
+  owner User  @relation(fields: [ownerId], references: [id])
+  members Member[]
+  transactions  Transaction[]
+}
+
+model Transaction{
+  id              String  @id @default(uuid())
+  organizationId  String
+  fromMemberId    String?
+  toMemberId      String
+  amount          Int
+  type            TransactionType
+  message         String?
+  createdAt       DateTime @default(now())
+
+  organization  Organization  @relation(fields: [organizationId], references: [id])
+  fromMember    Member? @relation("FromMember", fields: [fromMemberId], references:[id])
+  toMember      Member   @relation("ToMember", fields: [toMemberId], references: [id]) 
+}
+
+enum MemberRole{
+  owner
+  member
+}
+
+enum InviteStatus{
+  pending
+  accepted
+  expired
+}
+
+enum TransactionType{
+  reward
+  transfer
+}
