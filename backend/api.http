@@ -1,0 +1,21 @@
+### Register User
+POST http://localhost:1234/api/register
+Content-Type: application/json
+
+{
+  "name": "Angel",
+  "email": "angeldaniemf+try@gmail.com",
+  "password": "password123"
+}
+
+### Verify Email
+GET http://localhost:1234/api/verify-email?token=937601cfb47e30439f8d0cd7630916962a90e053376782c53764c6ccb2c46e00
+
+### Login User
+POST http://localhost:1234/api/login
+Content-Type: application/json
+
+{
+  "email": "angeldaniemf+try@gmail.com",
+  "password": "password123"
+}

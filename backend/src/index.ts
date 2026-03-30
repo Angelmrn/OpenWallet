@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.disable("x-powered-by");
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
+app.use("/api", authRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to TaskFlow API" });
