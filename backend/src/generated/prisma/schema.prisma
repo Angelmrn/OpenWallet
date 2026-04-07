@@ -29,6 +29,7 @@ model Member {
   organizationId     String
   role               MemberRole   @default(member)
   pointsBalance      Int          @default(0)
+  inviteEmail        String
   inviteToken        String?      @unique
   inviteTokenExpires DateTime?
   inviteStatus       InviteStatus @default(pending)

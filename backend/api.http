@@ -1,21 +1,67 @@
+############################## AUTH ##############################
+@baseUrl = http://localhost:1234/api
 ### Register User
-POST http://localhost:1234/api/register
+POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
   "name": "Angel",
-  "email": "angeldaniemf+try@gmail.com",
+  "email": "angeldaniemf+try3@gmail.com",
   "password": "password123"
 }
 
 ### Verify Email
-GET http://localhost:1234/api/verify-email?token=937601cfb47e30439f8d0cd7630916962a90e053376782c53764c6ccb2c46e00
+GET {{baseUrl}}/verify-email?token=f53d5edbdfd083682c10604c7f2117b0b72cc79f45400265b55395b28a70831e
 
 ### Login User
-POST http://localhost:1234/api/login
+POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+try@gmail.com",
+  "email": "angeldaniemf+try3@gmail.com",
   "password": "password123"
 }
+
+### Logout
+POST {{baseUrl}}/logout
+
+### Refresh Token
+POST {{baseUrl}}/refresh-token
+
+
+###GET Me
+GET {{baseUrl}}/me
+
+############################## ORGANIZATION ##############################
+
+### Create Org
+POST {{baseUrl}}/organizations/create
+Content-Type: application/json
+
+{
+  "name": "My Organization"
+}
+
+### Get My Orgs
+GET {{baseUrl}}/organizations/my
+
+### Get Org by ID
+GET {{baseUrl}}/organizations/dc8065d1-309e-4675-926b-5c4372255795
+
+### delete Org
+DELETE {{baseUrl}}/organizations/:id
+
+### Invite User to Org
+POST {{baseUrl}}/organizations/dc8065d1-309e-4675-926b-5c4372255795/invite
+Content-Type: application/json
+
+{
+  "email": "angeldaniemf+try2@gmail.com",
+  "role": "member"
+}
+
+### Get Invite Info
+GET {{baseUrl}}/organizations/invite/:token
+
+### Accept Invite
+POST {{baseUrl}}/organizations/invite/e1d374f3cbb5acbf065fb415160189f2090684aaa14f18b0b4ec896acf6c5a00/accept

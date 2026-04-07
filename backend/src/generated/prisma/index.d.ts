@@ -2481,6 +2481,7 @@ export namespace Prisma {
     organizationId: string | null
     role: $Enums.MemberRole | null
     pointsBalance: number | null
+    inviteEmail: string | null
     inviteToken: string | null
     inviteTokenExpires: Date | null
     inviteStatus: $Enums.InviteStatus | null
@@ -2493,6 +2494,7 @@ export namespace Prisma {
     organizationId: string | null
     role: $Enums.MemberRole | null
     pointsBalance: number | null
+    inviteEmail: string | null
     inviteToken: string | null
     inviteTokenExpires: Date | null
     inviteStatus: $Enums.InviteStatus | null
@@ -2505,6 +2507,7 @@ export namespace Prisma {
     organizationId: number
     role: number
     pointsBalance: number
+    inviteEmail: number
     inviteToken: number
     inviteTokenExpires: number
     inviteStatus: number
@@ -2527,6 +2530,7 @@ export namespace Prisma {
     organizationId?: true
     role?: true
     pointsBalance?: true
+    inviteEmail?: true
     inviteToken?: true
     inviteTokenExpires?: true
     inviteStatus?: true
@@ -2539,6 +2543,7 @@ export namespace Prisma {
     organizationId?: true
     role?: true
     pointsBalance?: true
+    inviteEmail?: true
     inviteToken?: true
     inviteTokenExpires?: true
     inviteStatus?: true
@@ -2551,6 +2556,7 @@ export namespace Prisma {
     organizationId?: true
     role?: true
     pointsBalance?: true
+    inviteEmail?: true
     inviteToken?: true
     inviteTokenExpires?: true
     inviteStatus?: true
@@ -2650,6 +2656,7 @@ export namespace Prisma {
     organizationId: string
     role: $Enums.MemberRole
     pointsBalance: number
+    inviteEmail: string
     inviteToken: string | null
     inviteTokenExpires: Date | null
     inviteStatus: $Enums.InviteStatus
@@ -2681,6 +2688,7 @@ export namespace Prisma {
     organizationId?: boolean
     role?: boolean
     pointsBalance?: boolean
+    inviteEmail?: boolean
     inviteToken?: boolean
     inviteTokenExpires?: boolean
     inviteStatus?: boolean
@@ -2698,6 +2706,7 @@ export namespace Prisma {
     organizationId?: boolean
     role?: boolean
     pointsBalance?: boolean
+    inviteEmail?: boolean
     inviteToken?: boolean
     inviteTokenExpires?: boolean
     inviteStatus?: boolean
@@ -2712,6 +2721,7 @@ export namespace Prisma {
     organizationId?: boolean
     role?: boolean
     pointsBalance?: boolean
+    inviteEmail?: boolean
     inviteToken?: boolean
     inviteTokenExpires?: boolean
     inviteStatus?: boolean
@@ -2726,13 +2736,14 @@ export namespace Prisma {
     organizationId?: boolean
     role?: boolean
     pointsBalance?: boolean
+    inviteEmail?: boolean
     inviteToken?: boolean
     inviteTokenExpires?: boolean
     inviteStatus?: boolean
     joinedAt?: boolean
   }
 
-  export type MemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "organizationId" | "role" | "pointsBalance" | "inviteToken" | "inviteTokenExpires" | "inviteStatus" | "joinedAt", ExtArgs["result"]["member"]>
+  export type MemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "organizationId" | "role" | "pointsBalance" | "inviteEmail" | "inviteToken" | "inviteTokenExpires" | "inviteStatus" | "joinedAt", ExtArgs["result"]["member"]>
   export type MemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Member$userArgs<ExtArgs>
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
@@ -2763,6 +2774,7 @@ export namespace Prisma {
       organizationId: string
       role: $Enums.MemberRole
       pointsBalance: number
+      inviteEmail: string
       inviteToken: string | null
       inviteTokenExpires: Date | null
       inviteStatus: $Enums.InviteStatus
@@ -3199,6 +3211,7 @@ export namespace Prisma {
     readonly organizationId: FieldRef<"Member", 'String'>
     readonly role: FieldRef<"Member", 'MemberRole'>
     readonly pointsBalance: FieldRef<"Member", 'Int'>
+    readonly inviteEmail: FieldRef<"Member", 'String'>
     readonly inviteToken: FieldRef<"Member", 'String'>
     readonly inviteTokenExpires: FieldRef<"Member", 'DateTime'>
     readonly inviteStatus: FieldRef<"Member", 'InviteStatus'>
@@ -6050,6 +6063,7 @@ export namespace Prisma {
     organizationId: 'organizationId',
     role: 'role',
     pointsBalance: 'pointsBalance',
+    inviteEmail: 'inviteEmail',
     inviteToken: 'inviteToken',
     inviteTokenExpires: 'inviteTokenExpires',
     inviteStatus: 'inviteStatus',
@@ -6308,6 +6322,7 @@ export namespace Prisma {
     organizationId?: StringFilter<"Member"> | string
     role?: EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
     pointsBalance?: IntFilter<"Member"> | number
+    inviteEmail?: StringFilter<"Member"> | string
     inviteToken?: StringNullableFilter<"Member"> | string | null
     inviteTokenExpires?: DateTimeNullableFilter<"Member"> | Date | string | null
     inviteStatus?: EnumInviteStatusFilter<"Member"> | $Enums.InviteStatus
@@ -6324,6 +6339,7 @@ export namespace Prisma {
     organizationId?: SortOrder
     role?: SortOrder
     pointsBalance?: SortOrder
+    inviteEmail?: SortOrder
     inviteToken?: SortOrderInput | SortOrder
     inviteTokenExpires?: SortOrderInput | SortOrder
     inviteStatus?: SortOrder
@@ -6344,6 +6360,7 @@ export namespace Prisma {
     organizationId?: StringFilter<"Member"> | string
     role?: EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
     pointsBalance?: IntFilter<"Member"> | number
+    inviteEmail?: StringFilter<"Member"> | string
     inviteTokenExpires?: DateTimeNullableFilter<"Member"> | Date | string | null
     inviteStatus?: EnumInviteStatusFilter<"Member"> | $Enums.InviteStatus
     joinedAt?: DateTimeNullableFilter<"Member"> | Date | string | null
@@ -6359,6 +6376,7 @@ export namespace Prisma {
     organizationId?: SortOrder
     role?: SortOrder
     pointsBalance?: SortOrder
+    inviteEmail?: SortOrder
     inviteToken?: SortOrderInput | SortOrder
     inviteTokenExpires?: SortOrderInput | SortOrder
     inviteStatus?: SortOrder
@@ -6379,6 +6397,7 @@ export namespace Prisma {
     organizationId?: StringWithAggregatesFilter<"Member"> | string
     role?: EnumMemberRoleWithAggregatesFilter<"Member"> | $Enums.MemberRole
     pointsBalance?: IntWithAggregatesFilter<"Member"> | number
+    inviteEmail?: StringWithAggregatesFilter<"Member"> | string
     inviteToken?: StringNullableWithAggregatesFilter<"Member"> | string | null
     inviteTokenExpires?: DateTimeNullableWithAggregatesFilter<"Member"> | Date | string | null
     inviteStatus?: EnumInviteStatusWithAggregatesFilter<"Member"> | $Enums.InviteStatus
@@ -6622,6 +6641,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -6638,6 +6658,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -6650,6 +6671,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -6666,6 +6688,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -6680,6 +6703,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -6690,6 +6714,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -6702,6 +6727,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -7086,6 +7112,7 @@ export namespace Prisma {
     organizationId?: SortOrder
     role?: SortOrder
     pointsBalance?: SortOrder
+    inviteEmail?: SortOrder
     inviteToken?: SortOrder
     inviteTokenExpires?: SortOrder
     inviteStatus?: SortOrder
@@ -7102,6 +7129,7 @@ export namespace Prisma {
     organizationId?: SortOrder
     role?: SortOrder
     pointsBalance?: SortOrder
+    inviteEmail?: SortOrder
     inviteToken?: SortOrder
     inviteTokenExpires?: SortOrder
     inviteStatus?: SortOrder
@@ -7114,6 +7142,7 @@ export namespace Prisma {
     organizationId?: SortOrder
     role?: SortOrder
     pointsBalance?: SortOrder
+    inviteEmail?: SortOrder
     inviteToken?: SortOrder
     inviteTokenExpires?: SortOrder
     inviteStatus?: SortOrder
@@ -7902,6 +7931,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -7916,6 +7946,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -7986,6 +8017,7 @@ export namespace Prisma {
     organizationId?: StringFilter<"Member"> | string
     role?: EnumMemberRoleFilter<"Member"> | $Enums.MemberRole
     pointsBalance?: IntFilter<"Member"> | number
+    inviteEmail?: StringFilter<"Member"> | string
     inviteToken?: StringNullableFilter<"Member"> | string | null
     inviteTokenExpires?: DateTimeNullableFilter<"Member"> | Date | string | null
     inviteStatus?: EnumInviteStatusFilter<"Member"> | $Enums.InviteStatus
@@ -8253,6 +8285,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8267,6 +8300,7 @@ export namespace Prisma {
     userId?: string | null
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8411,6 +8445,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8426,6 +8461,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8442,6 +8478,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8457,6 +8494,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8513,6 +8551,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8528,6 +8567,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8550,6 +8590,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8565,6 +8606,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8584,6 +8626,7 @@ export namespace Prisma {
     organizationId: string
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8619,6 +8662,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8633,6 +8677,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8646,6 +8691,7 @@ export namespace Prisma {
     organizationId?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8737,6 +8783,7 @@ export namespace Prisma {
     userId?: string | null
     role?: $Enums.MemberRole
     pointsBalance?: number
+    inviteEmail: string
     inviteToken?: string | null
     inviteTokenExpires?: Date | string | null
     inviteStatus?: $Enums.InviteStatus
@@ -8757,6 +8804,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8771,6 +8819,7 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus
@@ -8784,6 +8833,7 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumMemberRoleFieldUpdateOperationsInput | $Enums.MemberRole
     pointsBalance?: IntFieldUpdateOperationsInput | number
+    inviteEmail?: StringFieldUpdateOperationsInput | string
     inviteToken?: NullableStringFieldUpdateOperationsInput | string | null
     inviteTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     inviteStatus?: EnumInviteStatusFieldUpdateOperationsInput | $Enums.InviteStatus

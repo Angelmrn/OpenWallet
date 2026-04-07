@@ -103,7 +103,7 @@ export const login = async (req: Request, res: Response) => {
     const { email, password } = loginSchema.parse(req.body);
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
-      res.status(401).json({ message: "Invalid credentials" });
+      res.status(401).json({ message: "User not found" });
       return;
     }
     if (!user.isVerified) {
@@ -193,9 +193,18 @@ export const refreshToken = async (req: Request, res: Response) => {
     }
 
     const newAccessToken = generateAccessToken(user.id);
+    const newRefreshToken = generateRefreshToken(user.id);
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { refreshToken: newRefreshToken },
+    });
     res.cookie("accessToken", newAccessToken, {
       ...cookieOptions,
       maxAge: 1000 * 60 * 15,
+    });
+    res.cookie("refreshToken", newRefreshToken, {
+      ...cookieOptions,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
     res.json({ message: "Token renovado" });

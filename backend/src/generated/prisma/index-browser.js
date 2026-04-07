@@ -138,6 +138,7 @@ exports.Prisma.MemberScalarFieldEnum = {
   organizationId: 'organizationId',
   role: 'role',
   pointsBalance: 'pointsBalance',
+  inviteEmail: 'inviteEmail',
   inviteToken: 'inviteToken',
   inviteTokenExpires: 'inviteTokenExpires',
   inviteStatus: 'inviteStatus',
