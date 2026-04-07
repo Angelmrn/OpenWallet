@@ -75,13 +75,9 @@ export const getMyOrganizations = async (req: AuthRequest, res: Response) => {
       where: { ownerId: req.userId },
     });
 
-    if (!orgs.length) {
-      res.status(404).json({ message: "No organizations found" });
-      return;
-    }
-
     res.json({ organizations: orgs });
-  } catch {
+  } catch (error) {
+    console.error("Error in getMyOrganizations:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

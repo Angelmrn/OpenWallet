@@ -6,19 +6,19 @@ Content-Type: application/json
 
 {
   "name": "Angel",
-  "email": "angeldaniemf+try3@gmail.com",
+  "email": "angeldaniemf+owner@gmail.com",
   "password": "password123"
 }
 
 ### Verify Email
-GET {{baseUrl}}/verify-email?token=f53d5edbdfd083682c10604c7f2117b0b72cc79f45400265b55395b28a70831e
+GET {{baseUrl}}/verify-email?token=ba4c968fc47d3b629688504cf5fcb65cccb1e4c14a5583ba5a232d973639f1e7
 
 ### Login User
 POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+try3@gmail.com",
+  "email": "angeldaniemf+owner@gmail.com",
   "password": "password123"
 }
 
@@ -46,22 +46,66 @@ Content-Type: application/json
 GET {{baseUrl}}/organizations/my
 
 ### Get Org by ID
-GET {{baseUrl}}/organizations/dc8065d1-309e-4675-926b-5c4372255795
+GET {{baseUrl}}/organizations/79d4e29f-6964-45b4-a676-3727ad34cefb
 
 ### delete Org
-DELETE {{baseUrl}}/organizations/:id
+DELETE {{baseUrl}}/organizations/79d4e29f-6964-45b4-a676-3727ad34cefb
 
 ### Invite User to Org
-POST {{baseUrl}}/organizations/dc8065d1-309e-4675-926b-5c4372255795/invite
+POST {{baseUrl}}/organizations/79d4e29f-6964-45b4-a676-3727ad34cefb/invite
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+try2@gmail.com",
+  "email": "angeldaniemf+member2@gmail.com",
   "role": "member"
 }
 
 ### Get Invite Info
-GET {{baseUrl}}/organizations/invite/:token
-
+GET {{baseUrl}}/organizations/invite/ca8f3c2b94532c78b408146248685be853486090b445793c4fb9a9fd9522ad24
 ### Accept Invite
-POST {{baseUrl}}/organizations/invite/e1d374f3cbb5acbf065fb415160189f2090684aaa14f18b0b4ec896acf6c5a00/accept
+POST {{baseUrl}}/organizations/invite/ca8f3c2b94532c78b408146248685be853486090b445793c4fb9a9fd9522ad24/accept
+
+############################## MEMBERS ##############################
+
+### GET Members
+GET {{baseUrl}}/members/79d4e29f-6964-45b4-a676-3727ad34cefb
+
+### PATCH Update Member Role
+PATCH {{baseUrl}}/members/79d4e29f-6964-45b4-a676-3727ad34cefb/7d73a753-1e39-446f-8b3b-08e65a61dda7
+Content-Type: application/json
+
+{
+  "role": "member"
+}
+
+### DELETE Remove Member
+DELETE {{baseUrl}}/members/:orgId/:memberId
+
+### GET Member Balance
+GET {{baseUrl}}/members/:orgId/:memberId/balance
+
+############################## TRANSACTIONS ##############################
+
+### Reward Member
+POST {{baseUrl}}/transactions/79d4e29f-6964-45b4-a676-3727ad34cefb/reward/2377a961-863a-48f0-92e2-446eadecb7f8
+Content-Type: application/json
+
+{
+  "amount": 100,
+  "message": "Great job on the project!"
+}
+
+### Transfer Points
+POST {{baseUrl}}/transactions/79d4e29f-6964-45b4-a676-3727ad34cefb/transfer/:memberId
+Content-Type: application/json
+
+{
+  "amount": 50,
+  "message": "Thanks for your help!"
+}
+
+### Get Org Trasnsactions
+GET {{baseUrl}}/transactions/:orgId
+
+### Get My Transactions
+GET {{baseUrl}}/transactions/:orgId/me

@@ -5,6 +5,8 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes";
 import organizationRoutes from "./routes/organization.routes";
+import membersRoutes from "./routes/member.routes";
+import transactionRoutes from "./routes/transactions.routes";
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/api", authRoutes);
 app.use("/api/organizations", organizationRoutes);
+app.use("/api/members", membersRoutes);
+app.use("/api/transactions", transactionRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to TaskFlow API" });

@@ -15,8 +15,8 @@ import {
 const router = Router();
 
 router.post("/create", authenticate, createOrganization);
-router.get("/my", authenticate, getOrganization);
-router.get("/:orgId", authenticate, isMember, getMyOrganizations);
+router.get("/my", authenticate, getMyOrganizations);
+router.get("/:orgId", authenticate, isMember, getOrganization);
 router.delete("/:orgId", authenticate, isOwner, deleteOrganization);
 router.post("/:orgId/invite", authenticate, isOwner, inviteMember);
 router.get("/invite/:token", getInviteInfo);
