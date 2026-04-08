@@ -36,8 +36,8 @@ export const rewardMember = async (req: AuthRequest, res: Response) => {
       prisma.transaction.create({
         data: {
           organizationId: orgId,
-          fromMemberId: req.userId!,
-          toMemberId: memberId,
+          fromMemberId: ownerMember.id,
+          toMemberId: targetMember.id,
           amount: amount,
           type: "reward",
           message: message,
@@ -167,11 +167,12 @@ export const getMyTransactions = async (req: AuthRequest, res: Response) => {
         toMember: {
           select: { id: true, user: { select: { id: true, name: true } } },
         },
-        orderBy: { createdAt: "desc" },
       },
+      orderBy: { createdAt: "desc" },
     });
     res.json({ transactions });
-  } catch {
+  } catch (error) {
+    console.error("Error in getMyTransactions:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

@@ -16,10 +16,10 @@ const router = Router();
 
 router.post("/create", authenticate, createOrganization);
 router.get("/my", authenticate, getMyOrganizations);
+router.get("/invite/:token", getInviteInfo);
+router.post("/invite/:token/accept", authenticate, acceptInvite);
 router.get("/:orgId", authenticate, isMember, getOrganization);
 router.delete("/:orgId", authenticate, isOwner, deleteOrganization);
 router.post("/:orgId/invite", authenticate, isOwner, inviteMember);
-router.get("/invite/:token", getInviteInfo);
-router.post("/invite/:token/accept", authenticate, acceptInvite);
 
 export default router;

@@ -11,6 +11,8 @@ import {
 
 const router = Router();
 
+router.get("/:orgId", authenticate, isOwner, getOrgTransactions);
+router.get("/:orgId/me", authenticate, isMember, getMyTransactions);
 router.post("/:orgId/reward/:memberId", authenticate, isOwner, rewardMember);
 router.post(
   "/:orgId/transfer/:memberId",
@@ -18,7 +20,5 @@ router.post(
   isMember,
   transferPoints,
 );
-router.get("/:orgId", authenticate, isOwner, getOrgTransactions);
-router.get("/:orgId/me", authenticate, isMember, getMyTransactions);
 
 export default router;

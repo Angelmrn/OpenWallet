@@ -85,13 +85,17 @@ export const getMyOrganizations = async (req: AuthRequest, res: Response) => {
 export const deleteOrganization = async (req: AuthRequest, res: Response) => {
   try {
     const orgId = req.params.orgId as string;
-
-    await prisma.organization.delete({
-      where: { id: orgId, ownerId: req.userId! },
-    });
+    await prisma.$transaction([
+      prisma.transaction.deleteMany({ where: { organizationId: orgId } }),
+      prisma.member.deleteMany({ where: { organizationId: orgId } }),
+      prisma.organization.delete({
+        where: { id: orgId, ownerId: req.userId! },
+      }),
+    ]);
 
     res.json({ message: "Organization deleted" });
-  } catch {
+  } catch (error) {
+    console.error("Error in deleteOrganization:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -107,7 +111,6 @@ export const inviteMember = async (req: AuthRequest, res: Response) => {
       return;
     }
 
-    // Verificar si ya fue invitado
     const existing = await prisma.member.findFirst({
       where: { organizationId: orgId, inviteEmail: email },
     });

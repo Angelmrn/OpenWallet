@@ -62,9 +62,9 @@ export const updateMemberRole = async (req: AuthRequest, res: Response) => {
 export const removeMember = async (req: AuthRequest, res: Response) => {
   try {
     const orgId = req.params.orgId as string;
-    const userId = req.params.userId as string;
+    const memberId = req.params.memberId as string;
     const member = await prisma.member.findFirst({
-      where: { id: userId, organizationId: orgId },
+      where: { id: memberId, organizationId: orgId },
     });
     if (!member) {
       res.status(404).json({ message: "Member not found" });
@@ -75,7 +75,7 @@ export const removeMember = async (req: AuthRequest, res: Response) => {
       return;
     }
     await prisma.member.delete({
-      where: { id: userId },
+      where: { id: memberId },
     });
     res.json({ message: "Member removed" });
   } catch {
