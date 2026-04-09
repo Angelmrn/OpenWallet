@@ -5,13 +5,13 @@ POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-  "name": "Daniel",
-  "email": "angeldaniemf+member4@gmail.com",
+  "name": "Juan",
+  "email": "angeldaniemf+try2@gmail.com",
   "password": "password123"
 }
 
 ### Verify Email
-GET {{baseUrl}}/verify-email?token=b1871e927483c7cde33d11043c2c7ddcbb3b9eb61dc592d559e7e4e17be2e763
+GET {{baseUrl}}/verify-email?token=11163043747a8607b695556de8800493f547cff8d63b92820a026602279cc52f
 
 ### Login User
 POST {{baseUrl}}/login
