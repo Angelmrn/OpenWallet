@@ -5,8 +5,8 @@ POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-  "name": "Juan",
-  "email": "angeldaniemf+try2@gmail.com",
+  "name": "Lupe",
+  "email": "angeldaniemf+try5@gmail.com",
   "password": "password123"
 }
 
@@ -18,8 +18,8 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+owner@gmail.com",
-  "password": "password123"
+  "email": "angeldaniemf+member3@gmail.com",
+  "password": "Password123"
 }
 
 ### Logout
@@ -63,7 +63,7 @@ Content-Type: application/json
 ### Get Invite Info
 GET {{baseUrl}}/organizations/invite/ca8f3c2b94532c78b408146248685be853486090b445793c4fb9a9fd9522ad24
 ### Accept Invite
-POST {{baseUrl}}/organizations/invite/e53764feda56dda991cc5bfd4df0c6b9d462efe77d64f7a2bce117d59b7e75b6/accept
+POST {{baseUrl}}/organizations/invite/c2222da8e35ac616e6dd2b601747199686b43a9ff757537912fd981ffaf39b34/accept
 
 ############################## MEMBERS ##############################
 

@@ -74,11 +74,21 @@ export const removeMember = async (req: AuthRequest, res: Response) => {
       res.status(400).json({ message: "Owner cannot remove themselves" });
       return;
     }
-    await prisma.member.delete({
-      where: { id: memberId },
-    });
+    await prisma.$transaction([
+      prisma.transaction.deleteMany({
+        where: {
+          organizationId: orgId,
+          OR: [{ toMember: member }, { fromMember: member }],
+        },
+      }),
+      prisma.member.delete({
+        where: { id: memberId },
+      }),
+    ]);
+
     res.json({ message: "Member removed" });
-  } catch {
+  } catch (error) {
+    console.error("Error in removeMember:", error);
     res.status(500).json({ message: "Server error" });
   }
 };

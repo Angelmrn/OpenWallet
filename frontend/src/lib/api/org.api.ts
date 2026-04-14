@@ -21,7 +21,7 @@ export const acceptInviteOrgApi = (token: string) =>
   });
 
 export const getOrgApi = (orgId: string) =>
-  fetcher<{ organizations: Organization }>(`/organizations/${orgId}`);
+  fetcher<{ organization: Organization }>(`/organizations/${orgId}`);
 
 export const deleteOrgApi = (orgId: string) =>
   fetcher<{ message: string }>(`/organizations/${orgId}`, {

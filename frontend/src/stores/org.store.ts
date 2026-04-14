@@ -1,9 +1,14 @@
 import { create } from "zustand";
-import { Organization } from "@/types";
+
+interface ActiveOrg {
+  id: string;
+  name: string;
+  role: "owner" | "member";
+}
 
 interface OrgStore {
-  activeOrg: Organization | null;
-  setActiveOrg: (org: Organization) => void;
+  activeOrg: ActiveOrg | null;
+  setActiveOrg: (org: ActiveOrg) => void;
   clearOrg: () => void;
 }
 

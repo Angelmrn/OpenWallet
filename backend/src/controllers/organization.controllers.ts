@@ -72,7 +72,19 @@ export const getOrganization = async (req: AuthRequest, res: Response) => {
 export const getMyOrganizations = async (req: AuthRequest, res: Response) => {
   try {
     const orgs = await prisma.organization.findMany({
-      where: { ownerId: req.userId },
+      where: {
+        OR: [
+          { ownerId: req.userId },
+          {
+            members: {
+              some: {
+                userId: req.userId,
+                inviteStatus: "accepted",
+              },
+            },
+          },
+        ],
+      },
     });
 
     res.json({ organizations: orgs });
