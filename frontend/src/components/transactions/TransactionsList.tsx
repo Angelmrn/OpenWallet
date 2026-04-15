@@ -37,10 +37,10 @@ export default function TransactionsList({
                 </Badge>
                 <span className="text-sm text-muted-foreground">
                   {isReward
-                    ? `de ${tx.fromMember?.user?.name ?? "Owner"}`
+                    ? `de Owner a ${tx.toMember?.user?.name}`
                     : isIncoming
-                      ? `de ${tx.fromMember?.user?.name}`
-                      : `a ${tx.toMember?.user?.name}`}
+                      ? `de ${tx.fromMember?.user?.name} a ${tx.toMember?.user?.name}`
+                      : `de ${tx.fromMember?.user?.name} a ${tx.toMember?.user?.name}`}
                 </span>
               </div>
               {tx.message && (

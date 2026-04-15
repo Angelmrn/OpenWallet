@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,8 @@ export default function LoginPage() {
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
   const [error, setError] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
 
   const {
     register,
@@ -39,7 +41,7 @@ export default function LoginPage() {
       setAccessToken(response.accessToken);
       saveSession();
       setUser(response.user);
-      router.push("/dashboard");
+      router.push(redirect || "/dashboard");
     } catch (error) {
       setError(
         error instanceof Error ? error.message : "An unexpected error occurred",

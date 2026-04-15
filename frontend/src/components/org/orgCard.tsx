@@ -2,6 +2,7 @@ import { Organization } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import { Coins } from "lucide-react";
 
 interface OrgCardProps {
   org: Organization;
@@ -22,10 +23,13 @@ export default function OrgCard({ org, role }: OrgCardProps) {
         </Badge>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground">
-          {" "}
-          {org.totalPointsIssued} Points Issued
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="text-sm text-muted-foreground">
+            {" "}
+            {org.totalPointsIssued} Points Issued
+          </p>
+          <Coins className="text-gray-500" />
+        </div>
       </CardContent>
     </Card>
   );

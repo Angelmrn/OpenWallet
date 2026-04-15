@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import MembersTable from "@/components/members/MembersTable";
 import TransactionsList from "@/components/transactions/TransactionsList";
 import InviteMemberDialog from "@/components/org/InviteMemberDialog";
-
+import { Users, ArrowLeftRight } from "lucide-react";
 type ActiveTab = "members" | "transactions";
 
 export default function OrgPage() {
@@ -52,9 +52,14 @@ export default function OrgPage() {
     setMembers((prev) => prev.filter((m) => m.id !== memberId));
   };
 
-  const handleTransactionCreated = (tx: Transactions) => {
-    setTransactions((prev) => [tx, ...prev]);
-    getMembersApi(orgId).then((res) => setMembers(res.members));
+  const handleTransactionCreated = async () => {
+    const txApi = isOwner ? getOrgTransactionsApi : getMyTransactionsApi;
+    const [txRes, membersRes] = await Promise.all([
+      txApi(orgId),
+      getMembersApi(orgId),
+    ]);
+    setTransactions(txRes.transactions);
+    setMembers(membersRes.members);
   };
 
   if (loading) return <p className="text-muted-foreground">Cargando...</p>;
@@ -84,14 +89,19 @@ export default function OrgPage() {
           size="sm"
           onClick={() => setActiveTab("members")}
         >
-          Miembros ({members.length})
+          <div className="flex items-center gap-2">
+            <Users /> <span>Miembros ({members.length})</span>
+          </div>
         </Button>
         <Button
           variant={activeTab === "transactions" ? "default" : "ghost"}
           size="sm"
           onClick={() => setActiveTab("transactions")}
         >
-          Transacciones ({transactions.length})
+          <div className="flex items-center gap-2">
+            <ArrowLeftRight />
+            <span>Transacciones ({transactions.length})</span>
+          </div>
         </Button>
       </div>
 

@@ -5,6 +5,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import OrgCard from "@/components/org/orgCard";
 import CreateOrgDialog from "@/components/org/createDialog";
 import { Organization } from "@/types";
+import { Plus, Building2 } from "lucide-react";
 
 interface OrgWithRole {
   org: Organization;
@@ -39,7 +40,10 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Mis organizaciones</h1>
+          <div className="flex items-center gap-2">
+            <Building2 />
+            <h1 className="text-2xl font-bold">Mis organizaciones</h1>
+          </div>
           <p className="text-muted-foreground">Bienvenido, {user?.name}</p>
         </div>
         <CreateOrgDialog onCreated={handleOrgCreated} />

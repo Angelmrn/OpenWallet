@@ -18,7 +18,7 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+member3@gmail.com",
+  "email": "angeldaniemf+member4@gmail.com",
   "password": "Password123"
 }
 
@@ -63,7 +63,7 @@ Content-Type: application/json
 ### Get Invite Info
 GET {{baseUrl}}/organizations/invite/ca8f3c2b94532c78b408146248685be853486090b445793c4fb9a9fd9522ad24
 ### Accept Invite
-POST {{baseUrl}}/organizations/invite/c2222da8e35ac616e6dd2b601747199686b43a9ff757537912fd981ffaf39b34/accept
+POST {{baseUrl}}/organizations/invite/d4f911bd7da70d6098438f55098b94a05252684be152963598307874fc4ea118/accept
 
 ############################## MEMBERS ##############################
 

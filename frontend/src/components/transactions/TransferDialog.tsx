@@ -21,7 +21,7 @@ interface TransferDialogProps {
   orgId: string;
   member: Member;
   currentMember: Member;
-  onTransferred: (tx: Transactions) => void;
+  onTransferred: () => void;
 }
 
 export default function TransferDialog({
@@ -64,7 +64,7 @@ export default function TransferDialog({
         data.amount,
         data.message ?? "",
       );
-      onTransferred(response.transactions);
+      onTransferred();
       toast.success("Puntos enviados correctamente");
       reset();
       setOpen(false);

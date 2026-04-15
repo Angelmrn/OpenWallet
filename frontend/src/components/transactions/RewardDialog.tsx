@@ -27,7 +27,7 @@ type Form = z.infer<typeof schema>;
 interface RewardDialogProps {
   orgId: string;
   member: Member;
-  onRewarded: (tx: Transactions) => void;
+  onRewarded: () => void;
 }
 
 export default function RewardDialog({
@@ -56,7 +56,7 @@ export default function RewardDialog({
         data.amount,
         data.message,
       );
-      onRewarded(res.transactions);
+      onRewarded();
       toast.success("Puntos enviados correctamente");
       reset();
       setOpen(false);

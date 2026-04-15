@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { UserRoundPlus, MessageSquareCheck } from "lucide-react";
 
 const schema = z.object({
   email: z.string().email("Email inválido"),
@@ -69,16 +70,20 @@ export default function InviteMemberDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Invitar miembro</Button>
+        <Button variant="outline" className="gap-2">
+          <UserRoundPlus className="h-4 w-4" />
+          Invitar miembro
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Invitar miembro</DialogTitle>
         </DialogHeader>
         {success ? (
-          <p className="text-sm text-green-600 text-center py-4">
-            ✅ Invitación enviada
-          </p>
+          <div className="flex items-center justify-center gap-2 py-4 text-sm text-green-600 font-medium">
+            <MessageSquareCheck className="h-5 w-5" />
+            <span>Invitación enviada</span>
+          </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1">

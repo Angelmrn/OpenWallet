@@ -1,5 +1,5 @@
 "use client";
-import { Member, Transactions } from "@/types";
+import { Member } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -19,7 +19,7 @@ interface MembersTableProps {
   isOwner: boolean;
   currentUserId: string;
   onRemoved: (memberId: string) => void;
-  onTransactionCreated: (tx: Transactions) => void;
+  onTransactionCreated: () => void;
 }
 
 export default function MembersTable({
@@ -38,7 +38,7 @@ export default function MembersTable({
         <TableRow>
           <TableHead>Nombre</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Rol</TableHead>
+          <TableHead> Rol</TableHead>
           <TableHead>Balance</TableHead>
           <TableHead className="text-right">Acciones</TableHead>
         </TableRow>

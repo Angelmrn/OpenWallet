@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Organization } from "@/types";
+import { Plus, Building2 } from "lucide-react";
 
 const createOrgSchema = z.object({
   name: z.string().min(2, "Mínimo 2 caracteres"),
@@ -56,11 +57,19 @@ export default function CreateOrgDialog({ onCreated }: CreateOrgDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Nueva organización</Button>
+        <Button className="gap-2">
+          <Plus className="h-4 w-4" />
+          Nueva organización
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Crear organización</DialogTitle>
+          <DialogTitle>
+            <div className="flex items-center gap-2">
+              <Building2 />
+              Crear organización
+            </div>
+          </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">

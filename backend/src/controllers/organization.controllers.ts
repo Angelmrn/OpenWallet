@@ -185,7 +185,8 @@ export const acceptInvite = async (req: AuthRequest, res: Response) => {
     });
 
     res.json({ message: "Invite accepted successfully" });
-  } catch {
+  } catch (error) {
+    console.error("Error in acceptInvite:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
