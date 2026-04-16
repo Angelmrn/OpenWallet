@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/fetcher";
-import { Organization } from "@/types";
+import { Invitation, Organization, Transactions } from "@/types";
 
 export const createOrgApi = (name: string) =>
   fetcher<{ organization: Organization }>("/organizations/create", {
@@ -33,3 +33,6 @@ export const inviteMemberOrgApi = (orgId: string, email: string) =>
     method: "POST",
     body: JSON.stringify({ email }),
   });
+
+export const getPendingInviteApi = (orgId: string) =>
+  fetcher<{ invitations: Invitation[] }>(`/organizations/${orgId}/pending`);

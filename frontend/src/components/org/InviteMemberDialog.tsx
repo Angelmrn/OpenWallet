@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import { UserRoundPlus, MessageSquareCheck } from "lucide-react";
 
 const schema = z.object({
-  email: z.string().email("Email inválido"),
+  email: z.email("Email inválido"),
 });
 
 type Form = z.infer<typeof schema>;

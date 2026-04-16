@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { fetcher } from "@/lib/fetcher";
 import { useAuthStore } from "@/stores/auth.store";
 import { getMeApi } from "@/lib/api/auth.api";
+import { acceptInviteOrgApi } from "@/lib/api/org.api";
 
 type Status = "loading" | "success" | "error";
 
@@ -15,7 +15,6 @@ export default function AceptInvitationPage() {
   const { user, setUser } = useAuthStore();
   const [status, setStatus] = useState<Status>("loading");
   const [message, setMessage] = useState("");
-  const [authCheck, setAuthCheck] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -36,14 +35,9 @@ export default function AceptInvitationPage() {
         }
       }
       try {
-        const response = fetcher<{ message: string }>(
-          `/organizations/invite/${token}/accept`,
-          {
-            method: "POST",
-          },
-        );
+        const response = await acceptInviteOrgApi(token);
         setStatus("success");
-        setMessage((await response).message);
+        setMessage(response.message);
       } catch (error) {
         setStatus("error");
         setMessage(

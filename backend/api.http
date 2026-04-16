@@ -61,7 +61,7 @@ Content-Type: application/json
 }
 
 ### Get Invite Info
-GET {{baseUrl}}/organizations/invite/ca8f3c2b94532c78b408146248685be853486090b445793c4fb9a9fd9522ad24
+GET {{baseUrl}}/organizations/invite/32f9117b5ad15f9731cf8c565b4a6010e9c61a208f45ce1d5eafa0858190f571
 ### Accept Invite
 POST {{baseUrl}}/organizations/invite/d4f911bd7da70d6098438f55098b94a05252684be152963598307874fc4ea118/accept
 

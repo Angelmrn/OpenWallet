@@ -38,3 +38,8 @@ export interface Transactions {
   fromMember?: Pick<Member, "id"> & { user: Pick<User, "id" | "name"> };
   toMember?: Pick<Member, "id"> & { user: Pick<User, "id" | "name"> };
 }
+
+export interface Invitation {
+  token: string;
+  email: string;
+}

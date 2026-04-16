@@ -10,7 +10,7 @@ const createOrgSchema = z.object({
 });
 
 const inviteMemberSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   role: z.enum(["member", "owner"]).default("member"),
 });
 
@@ -215,9 +215,36 @@ export const getInviteInfo = async (req: AuthRequest, res: Response) => {
         email: member.inviteEmail,
         organization: member.organization.name,
         role: member.role,
+        status: member.inviteStatus,
       },
     });
   } catch {
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const getPendingInvite = async (req: AuthRequest, res: Response) => {
+  try {
+    const orgId = req.params.orgId as string;
+
+    const invitations = await prisma.member.findMany({
+      where: {
+        organizationId: orgId,
+        inviteStatus: "pending",
+        inviteTokenExpires: { gt: new Date() },
+      },
+      select: {
+        inviteToken: true,
+        inviteEmail: true,
+      },
+    });
+    const formattedInvitations = invitations.map((inv) => ({
+      token: inv.inviteToken,
+      email: inv.inviteEmail,
+    }));
+    res.status(200).json({ invitations: formattedInvitations });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener invitaciones" });
   }
 };

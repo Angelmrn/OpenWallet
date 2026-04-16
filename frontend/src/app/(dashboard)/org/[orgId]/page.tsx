@@ -8,13 +8,14 @@ import {
   getOrgTransactionsApi,
   getMyTransactionsApi,
 } from "@/lib/api/transactions.api";
-import { getOrgApi } from "@/lib/api/org.api";
-import { Member, Transactions, Organization } from "@/types";
+import { getOrgApi, getPendingInviteApi } from "@/lib/api/org.api";
+import { Member, Transactions, Organization, Invitation } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import MembersTable from "@/components/members/MembersTable";
 import TransactionsList from "@/components/transactions/TransactionsList";
 import InviteMemberDialog from "@/components/org/InviteMemberDialog";
+import InviteStatusDialog from "@/components/org/InviteStatusDialog";
 import { Users, ArrowLeftRight } from "lucide-react";
 type ActiveTab = "members" | "transactions";
 
@@ -29,10 +30,19 @@ export default function OrgPage() {
   const [transactions, setTransactions] = useState<Transactions[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<ActiveTab>("members");
+  const [invitations, setInvitations] = useState<Invitation[]>([]);
 
+  const fetchInvitations = async () => {
+    try {
+      const data = await getPendingInviteApi(orgId);
+      setInvitations(data.invitations);
+    } catch (error) {
+      console.error("Error al cargar Invitaciones", error);
+    }
+  };
   useEffect(() => {
     if (!orgId || !user) return;
-
+    fetchInvitations();
     const txApi = isOwner ? getOrgTransactionsApi : getMyTransactionsApi;
 
     Promise.all([getOrgApi(orgId), getMembersApi(orgId), txApi(orgId)])
@@ -79,7 +89,17 @@ export default function OrgPage() {
           </p>
         </div>
         {isOwner && (
-          <InviteMemberDialog orgId={orgId} onInvited={handleMemberInvited} />
+          <div className="flex items-center gap-2">
+            <InviteMemberDialog
+              orgId={orgId}
+              onInvited={() => {
+                handleMemberInvited();
+                fetchInvitations();
+              }}
+            />
+
+            <InviteStatusDialog invitations={invitations} />
+          </div>
         )}
       </div>
 
