@@ -2,7 +2,7 @@ const BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:1234/api";
 
 let accessToken: string | null = null;
-
+let isRedirecting = false;
 export const setAccessToken = (token: string | null) => {
   accessToken = token;
 };
@@ -15,7 +15,10 @@ async function refreshAccessToken(): Promise<string | null> {
       method: "POST",
       credentials: "include",
     });
-    if (!response.ok) return null;
+    if (!response.ok) {
+      isRedirecting = false;
+      return null;
+    }
     const data = await response.json();
     accessToken = data.accessToken;
     return accessToken;
@@ -43,10 +46,12 @@ export async function fetcher<T>(
   if (response.status === 401) {
     const newToken = await refreshAccessToken();
     if (!newToken) {
-      if (typeof window !== "undefined") {
+      if (typeof window !== "undefined" && !isRedirecting) {
+        isRedirecting = true;
+        clearSession();
         window.location.href = "/login";
       }
-      throw new Error("Unauthorized");
+      throw new Error("Session expired");
     }
     response = await makeRequest(newToken);
   }

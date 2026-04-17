@@ -20,4 +20,6 @@ export const deleteMemberApi = (orgId: string, memberId: string) =>
   });
 
 export const getMemberBalanceApi = (orgId: string, memberId: string) =>
-  fetcher<{ balance: number }>(`/members/${orgId}/${memberId}/balance`, {});
+  fetcher<{ balance: number; name: string }>(
+    `/members/${orgId}/${memberId}/balance`,
+  );

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth.store";
 import { useOrgStore } from "@/stores/org.store";
 import { getMembersApi } from "@/lib/api/members.api";
@@ -17,10 +17,13 @@ import TransactionsList from "@/components/transactions/TransactionsList";
 import InviteMemberDialog from "@/components/org/InviteMemberDialog";
 import InviteStatusDialog from "@/components/org/InviteStatusDialog";
 import { Users, ArrowLeftRight } from "lucide-react";
+import RemoveOrgDialog from "@/components/org/DeleteOrgDialog";
+import { toast } from "sonner";
 type ActiveTab = "members" | "transactions";
 
 export default function OrgPage() {
   const { orgId } = useParams<{ orgId: string }>();
+  const router = useRouter();
   const { user } = useAuthStore();
   const { activeOrg } = useOrgStore();
   const isOwner = activeOrg?.role === "owner";
@@ -42,7 +45,7 @@ export default function OrgPage() {
   };
   useEffect(() => {
     if (!orgId || !user) return;
-    fetchInvitations();
+    if (isOwner) fetchInvitations();
     const txApi = isOwner ? getOrgTransactionsApi : getMyTransactionsApi;
 
     Promise.all([getOrgApi(orgId), getMembersApi(orgId), txApi(orgId)])
@@ -60,6 +63,11 @@ export default function OrgPage() {
 
   const handleMemberRemoved = (memberId: string) => {
     setMembers((prev) => prev.filter((m) => m.id !== memberId));
+  };
+
+  const handleOrgRemoved = () => {
+    toast.success("Organizacion eliminada Correctamente.");
+    router.push("/dashboard");
   };
 
   const handleTransactionCreated = async () => {
@@ -97,8 +105,12 @@ export default function OrgPage() {
                 fetchInvitations();
               }}
             />
-
             <InviteStatusDialog invitations={invitations} />
+            <RemoveOrgDialog
+              orgId={orgId}
+              orgName={org?.name}
+              onRemoved={handleOrgRemoved}
+            />
           </div>
         )}
       </div>

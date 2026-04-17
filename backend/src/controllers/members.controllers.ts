@@ -96,21 +96,30 @@ export const removeMember = async (req: AuthRequest, res: Response) => {
 export const getMemberBalance = async (req: AuthRequest, res: Response) => {
   try {
     const orgId = req.params.orgId as string;
-    const userId = req.params.userId as string;
+    const memberId = req.params.memberId as string;
     const member = await prisma.member.findFirst({
       where: {
         organizationId: orgId,
-        userId: userId,
+        id: memberId,
         inviteStatus: "accepted",
       },
-      select: { pointsBalance: true },
+
+      select: {
+        pointsBalance: true,
+        user: { select: { name: true } },
+      },
     });
     if (!member) {
       res.status(404).json({ message: "Organization or member not found" });
+      return;
     }
 
-    res.json({ balance: member?.pointsBalance });
-  } catch {
+    res.json({
+      balance: member?.pointsBalance,
+      userName: member.user?.name || "usuario no encontrado",
+    });
+  } catch (error) {
+    console.log("error en GetMemberBalance: ", error);
     res.status(500).json({ message: "Server error" });
   }
 };

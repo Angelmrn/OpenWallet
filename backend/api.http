@@ -18,7 +18,7 @@ POST {{baseUrl}}/login
 Content-Type: application/json
 
 {
-  "email": "angeldaniemf+member4@gmail.com",
+  "email": "angeldaniemf+member2@gmail.com",
   "password": "Password123"
 }
 
@@ -68,8 +68,7 @@ POST {{baseUrl}}/organizations/invite/d4f911bd7da70d6098438f55098b94a05252684be1
 ############################## MEMBERS ##############################
 
 ### GET Members
-GET {{baseUrl}}/members/79d4e29f-6964-45b4-a676-3727ad34cefb
-
+GET {{baseUrl}}/members/77da7257-7f3c-474e-982c-f01ccb32aeac
 ### PATCH Update Member Role
 PATCH {{baseUrl}}/members/79d4e29f-6964-45b4-a676-3727ad34cefb/7d73a753-1e39-446f-8b3b-08e65a61dda7
 Content-Type: application/json
@@ -82,7 +81,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/members/79d4e29f-6964-45b4-a676-3727ad34cefb/4b221498-e240-4e8c-9473-8528854c5790
 
 ### GET Member Balance
-GET {{baseUrl}}/members/:orgId/:memberId/balance
+GET {{baseUrl}}/members/cdbdd2ec-3611-4ca9-bb08-10882f9d2283/6b24d4b0-6942-48bc-85e0-0c82b2e16d6e/balance
 
 ############################## TRANSACTIONS ##############################
 
