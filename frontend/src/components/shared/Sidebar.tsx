@@ -37,7 +37,7 @@ export default function Sidebar() {
           className="font-bold text-lg cursor-pointer"
           onClick={() => router.push("/dashboard")}
         >
-          RewardFlow
+          OpenWallet
         </span>
       </div>
 
@@ -69,7 +69,7 @@ export default function Sidebar() {
           onClick={handleLogout}
         >
           <LogOut size={18} />
-          Cerrar sesión
+          Logout
         </Button>
       </div>
     </aside>

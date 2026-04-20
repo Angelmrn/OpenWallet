@@ -31,22 +31,22 @@ export default function MembersTable({
   onTransactionCreated,
 }: MembersTableProps) {
   const currentMember = members.find((m) => m.userId === currentUserId);
+  const otherMembers = members.filter((m) => m.userId !== currentUserId);
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Nombre</TableHead>
+          <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead> Rol</TableHead>
-          <TableHead>Balance</TableHead>
-          <TableHead className="text-right">Acciones</TableHead>
+          <TableHead>Role</TableHead>
+          {isOwner && <TableHead>Balance</TableHead>}
+          <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {members.map((member) => {
-          const isCurrentUser = member.userId === currentUserId;
-          const isTarget = !isCurrentUser && member.inviteStatus === "accepted";
+        {otherMembers.map((member) => {
+          const isTarget = member.inviteStatus === "accepted";
 
           return (
             <TableRow key={member.id}>
@@ -61,7 +61,8 @@ export default function MembersTable({
                   {member.role}
                 </Badge>
               </TableCell>
-              <TableCell>{member.pointsBalance} pts</TableCell>
+
+              {isOwner && <TableCell>{member.pointsBalance} pts</TableCell>}
 
               <TableCell className="text-right space-x-2">
                 {isOwner && isTarget && (
@@ -71,15 +72,20 @@ export default function MembersTable({
                     onRewarded={onTransactionCreated}
                   />
                 )}
-                {!isOwner && isTarget && currentMember && (
-                  <TransferDialog
-                    orgId={orgId}
-                    member={member}
-                    currentMember={currentMember}
-                    onTransferred={onTransactionCreated}
-                  />
-                )}
-                {isOwner && !isCurrentUser && (
+
+                {!isOwner &&
+                  isTarget &&
+                  member.role !== "owner" &&
+                  currentMember && (
+                    <TransferDialog
+                      orgId={orgId}
+                      member={member}
+                      currentMember={currentMember}
+                      onTransferred={onTransactionCreated}
+                    />
+                  )}
+
+                {isOwner && (
                   <RemoveMemberDialog
                     member={member}
                     orgId={orgId}

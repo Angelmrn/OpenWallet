@@ -12,11 +12,7 @@ export default function TransactionsList({
   currentUserId,
 }: TransactionsListProps) {
   if (transactions.length === 0) {
-    return (
-      <p className="text-muted-foreground text-sm">
-        No hay transacciones todavía
-      </p>
-    );
+    return <p className="text-muted-foreground text-sm">No transactions yet</p>;
   }
 
   return (
@@ -33,14 +29,14 @@ export default function TransactionsList({
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <Badge variant={isReward ? "default" : "secondary"}>
-                  {isReward ? "Recompensa" : "Transferencia"}
+                  {isReward ? "Reward" : "Transfer"}
                 </Badge>
                 <span className="text-sm text-muted-foreground">
                   {isReward
-                    ? `de Owner a ${tx.toMember?.user?.name}`
+                    ? `${tx.toMember?.user?.name} Received a Reward `
                     : isIncoming
-                      ? `de ${tx.fromMember?.user?.name} a ${tx.toMember?.user?.name}`
-                      : `de ${tx.fromMember?.user?.name} a ${tx.toMember?.user?.name}`}
+                      ? `${tx.fromMember?.user?.name} transferred to ${tx.toMember?.user?.name}`
+                      : `${tx.fromMember?.user?.name} transferred to ${tx.toMember?.user?.name ? tx.toMember.user.name : "Owner"}`}
                 </span>
               </div>
               {tx.message && (

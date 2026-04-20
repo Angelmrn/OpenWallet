@@ -34,7 +34,7 @@ export default function RemoveMemberDialog({
       onRemoved(member.id);
       setOpen(false);
     } catch (error) {
-      console.error("Error al eliminar miembro", error);
+      console.error("Error deleting member", error);
     } finally {
       setRemoving(false);
     }
@@ -44,19 +44,19 @@ export default function RemoveMemberDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="destructive" size="sm">
-          Eliminar
+          Delete
         </Button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>¿Eliminar Miembro?</DialogTitle>
+          <DialogTitle>¿Delete Member?</DialogTitle>
           <DialogDescription>
-            Estás a punto de eliminar a{" "}
+            Your are about to delete{" "}
             <span className="font-medium">
               {member?.user?.name ?? member?.inviteEmail}.
             </span>{" "}
-            Esta acción no se puede deshacer.
+            This action cannot be undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2">
@@ -65,14 +65,14 @@ export default function RemoveMemberDialog({
             onClick={() => setOpen(false)}
             disabled={removing}
           >
-            Cancelar
+            Cancel
           </Button>
           <Button
             variant="destructive"
             disabled={removing}
             onClick={handleRemove}
           >
-            {removing ? "Eliminando..." : "Eliminar"}
+            {removing ? "Deleting..." : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>

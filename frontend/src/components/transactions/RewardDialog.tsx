@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { rewardMemberApi } from "@/lib/api/transactions.api";
-import { Member, Transactions } from "@/types";
+import { Member } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +18,7 @@ import {
 import { toast } from "sonner";
 
 const schema = z.object({
-  amount: z.coerce.number().min(1, "Mínimo 1 punto"),
+  amount: z.coerce.number().min(1, "Minimum 1 point"),
   message: z.string().optional(),
 });
 
@@ -50,19 +50,14 @@ export default function RewardDialog({
   const onSubmit = async (data: Form) => {
     try {
       setServerError(null);
-      const res = await rewardMemberApi(
-        orgId,
-        member.id,
-        data.amount,
-        data.message,
-      );
+      await rewardMemberApi(orgId, member.id, data.amount, data.message);
       onRewarded();
-      toast.success("Puntos enviados correctamente");
+      toast.success("Points sent successfully");
       reset();
       setOpen(false);
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Error al recompensar",
+        error instanceof Error ? error.message : "Error when rewarding",
       );
       setServerError(error instanceof Error ? error.message : "Error");
     }
@@ -72,28 +67,28 @@ export default function RewardDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="sm" variant="outline">
-          Recompensar
+          Reward
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Recompensar a {member.user?.name}</DialogTitle>
+          <DialogTitle>Reward {member.user?.name}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <Label>Puntos</Label>
+            <Label>Points</Label>
             <Input type="number" {...register("amount")} placeholder="100" />
             {errors.amount && (
               <p className="text-sm text-red-500">{errors.amount.message}</p>
             )}
           </div>
           <div className="space-y-1">
-            <Label>Mensaje (opcional)</Label>
-            <Input {...register("message")} placeholder="Buen trabajo!" />
+            <Label>Message (optional)</Label>
+            <Input {...register("message")} placeholder="Thank you!" />
           </div>
           {serverError && <p className="text-sm text-red-500">{serverError}</p>}
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Dar puntos"}
+            {isSubmitting ? "Rewarding..." : "Reward"}
           </Button>
         </form>
       </DialogContent>

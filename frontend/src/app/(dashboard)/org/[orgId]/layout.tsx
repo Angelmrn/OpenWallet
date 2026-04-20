@@ -35,7 +35,7 @@ export default function OrgLayout({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <p className="text-muted-foreground">Cargando organización...</p>
+        <p className="text-muted-foreground">Loading organization...</p>
       </div>
     );
   }

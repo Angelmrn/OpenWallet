@@ -40,7 +40,7 @@ export default function OrgPage() {
       const data = await getPendingInviteApi(orgId);
       setInvitations(data.invitations);
     } catch (error) {
-      console.error("Error al cargar Invitaciones", error);
+      console.error("Error loading invitations", error);
     }
   };
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function OrgPage() {
   };
 
   const handleOrgRemoved = () => {
-    toast.success("Organizacion eliminada Correctamente.");
+    toast.success("Organization successfully removed.");
     router.push("/dashboard");
   };
 
@@ -80,7 +80,7 @@ export default function OrgPage() {
     setMembers(membersRes.members);
   };
 
-  if (loading) return <p className="text-muted-foreground">Cargando...</p>;
+  if (loading) return <p className="text-muted-foreground">Loading...</p>;
 
   return (
     <div className="space-y-6">
@@ -89,11 +89,11 @@ export default function OrgPage() {
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-bold">{org?.name}</h1>
             <Badge variant={isOwner ? "default" : "secondary"}>
-              {isOwner ? "Owner" : "Miembro"}
+              {isOwner ? "Owner" : "Member"}
             </Badge>
           </div>
           <p className="text-sm text-muted-foreground">
-            {org?.totalPointsIssued} puntos emitidos en total
+            {org?.totalPointsIssued} total points issued
           </p>
         </div>
         {isOwner && (
@@ -122,7 +122,7 @@ export default function OrgPage() {
           onClick={() => setActiveTab("members")}
         >
           <div className="flex items-center gap-2">
-            <Users /> <span>Miembros ({members.length})</span>
+            <Users /> <span>Members ({members.length})</span>
           </div>
         </Button>
         <Button
@@ -132,7 +132,7 @@ export default function OrgPage() {
         >
           <div className="flex items-center gap-2">
             <ArrowLeftRight />
-            <span>Transacciones ({transactions.length})</span>
+            <span>Transactions ({transactions.length})</span>
           </div>
         </Button>
       </div>

@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
   const hasSession = req.cookies.get("hasSession")?.value === "true";
 
   if (isProtected && !hasSession) {
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
   if (isAuthRoute && hasSession) {
     return NextResponse.redirect(new URL("/dashboard", req.url));

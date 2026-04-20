@@ -67,9 +67,13 @@ export default function InviteStatusDialog({
       toast.error(
         error instanceof Error
           ? error.message
-          : "Error al ver estado de invitacion.",
+          : "Error viewing invitation status.",
       );
-      setError(error instanceof Error ? error.message : "Error al ver estado");
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Error viewing invitation status",
+      );
     }
   };
   const handleOpenChange = (isOpen: boolean) => {
@@ -86,27 +90,27 @@ export default function InviteStatusDialog({
       <DialogTrigger asChild>
         <Button className="gap-2" disabled={invitations.length === 0}>
           <Search className="h-4 w-4" />
-          Ver estado de invitacion
+          Invitation status
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Ver Estado de Invitacion</DialogTitle>
+          <DialogTitle>Invitation status</DialogTitle>
         </DialogHeader>
         {success && inviteData ? (
           <div className="space-y-4 py-4">
-            <h3 className="text-sm font-medium">Datos de la Invitación:</h3>
+            <h3 className="text-sm font-medium">Invitation Details:</h3>
             <div className="rounded-md bg-zinc-50 p-4 dark:bg-zinc-900 border text-sm space-y-2">
               <p>
                 <span className="font-semibold">Email:</span>{" "}
                 {inviteData.invite.email || "ola"}
               </p>
               <p>
-                <span className="font-semibold">Estado:</span>{" "}
+                <span className="font-semibold">Role:</span>{" "}
                 {inviteData.invite.role}
               </p>
               <p>
-                <span className="font-semibold">Estado:</span>{" "}
+                <span className="font-semibold">Status:</span>{" "}
                 {inviteData.invite.status}
               </p>
             </div>
@@ -115,13 +119,13 @@ export default function InviteStatusDialog({
               onClick={() => setSuccess(false)}
               variant="outline"
             >
-              Buscar otra
+              Look another
             </Button>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1">
-              <Label>Selecciona la invitacion</Label>
+              <Label>Select one invitation</Label>
               <Controller
                 name="token"
                 control={control}
@@ -131,7 +135,7 @@ export default function InviteStatusDialog({
                     defaultValue={field.value}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un correo..." />
+                      <SelectValue placeholder="Select one email..." />
                     </SelectTrigger>
                     <SelectContent>
                       {invitations.map((invite) => (
@@ -149,7 +153,7 @@ export default function InviteStatusDialog({
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Buscando..." : "Ver Estado"}
+              {isSubmitting ? "Searching..." : "View Status"}
             </Button>
           </form>
         )}

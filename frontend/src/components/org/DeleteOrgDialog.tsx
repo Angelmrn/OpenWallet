@@ -34,7 +34,7 @@ export default function RemoveOrgDialog({
       onRemoved(orgId);
       setOpen(false);
     } catch (error) {
-      console.error("Error al eliminar Organizacion ", error);
+      console.error("Error deleting Organization ", error);
     } finally {
       setRemoving(false);
     }
@@ -49,13 +49,13 @@ export default function RemoveOrgDialog({
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>¿Eliminar Organizacion?</DialogTitle>
+          <DialogTitle>¿Delete Organization?</DialogTitle>
           <DialogDescription>
-            Estás a punto de eliminar la organización{" "}
+            You are about to delete the organization{" "}
             <span className="font-medium text-foreground">
-              {orgName || "seleccionada"}
+              {orgName || "selected"}
             </span>
-            . Esta acción no se puede deshacer y todos los datos se perderán.
+            . This action cannot be undone and all data will be lost.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2">
@@ -64,14 +64,14 @@ export default function RemoveOrgDialog({
             onClick={() => setOpen(false)}
             disabled={removing}
           >
-            Cancelar
+            Cancel
           </Button>
           <Button
             variant="destructive"
             disabled={removing}
             onClick={handleRemove}
           >
-            {removing ? "Eliminando..." : "Eliminar"}
+            {removing ? "Deleting..." : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>

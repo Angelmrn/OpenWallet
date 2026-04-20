@@ -18,7 +18,7 @@ import { Organization } from "@/types";
 import { Plus, Building2 } from "lucide-react";
 
 const createOrgSchema = z.object({
-  name: z.string().min(2, "Mínimo 2 caracteres"),
+  name: z.string().min(2, "Minimum 2 characters"),
 });
 
 type CreateOrgForm = z.infer<typeof createOrgSchema>;
@@ -49,7 +49,7 @@ export default function CreateOrgDialog({ onCreated }: CreateOrgDialogProps) {
       setOpen(false);
     } catch (error) {
       setServerError(
-        error instanceof Error ? error.message : "Error al crear organización",
+        error instanceof Error ? error.message : "Error creating organization",
       );
     }
   };
@@ -59,7 +59,7 @@ export default function CreateOrgDialog({ onCreated }: CreateOrgDialogProps) {
       <DialogTrigger asChild>
         <Button className="gap-2">
           <Plus className="h-4 w-4" />
-          Nueva organización
+          New Organization
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -67,21 +67,21 @@ export default function CreateOrgDialog({ onCreated }: CreateOrgDialogProps) {
           <DialogTitle>
             <div className="flex items-center gap-2">
               <Building2 />
-              Crear organización
+              Create organization
             </div>
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <Label htmlFor="name">Nombre</Label>
-            <Input id="name" {...register("name")} placeholder="Mi empresa" />
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" {...register("name")} placeholder="My Org" />
             {errors.name && (
               <p className="text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
           {serverError && <p className="text-sm text-red-500">{serverError}</p>}
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Creando..." : "Crear"}
+            {isSubmitting ? "Creating..." : "Create"}
           </Button>
         </form>
       </DialogContent>

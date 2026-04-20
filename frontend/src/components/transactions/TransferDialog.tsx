@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { transferPointsApi } from "@/lib/api/transactions.api";
-import { Member, Transactions } from "@/types";
+import { Member } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -65,12 +65,12 @@ export default function TransferDialog({
         data.message ?? "",
       );
       onTransferred();
-      toast.success("Puntos enviados correctamente");
+      toast.success("Points sent successfully");
       reset();
       setOpen(false);
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Error al recompensar",
+        error instanceof Error ? error.message : "Error when Transfer",
       );
       setServerError(error instanceof Error ? error.message : "Error");
     }
@@ -80,32 +80,32 @@ export default function TransferDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="sm" variant="outline" className="cursor-pointer">
-          Transferir
+          Transfer
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Transferir a {member.user?.name}</DialogTitle>
+          <DialogTitle>Transfer {member.user?.name}</DialogTitle>
         </DialogHeader>
         <p className="text-sm text-muted-foreground">
-          Tu balance:{" "}
+          You´re balance:{" "}
           <span className="font-medium">{currentMember.pointsBalance} pts</span>
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1">
-            <Label>Puntos</Label>
+            <Label>Points</Label>
             <Input type="number" {...register("amount")} placeholder="50" />
             {errors.amount && (
               <p className="text-sm text-red-500">{errors.amount.message}</p>
             )}
           </div>
           <div className="space-y-1">
-            <Label>Mensaje (opcional)</Label>
-            <Input {...register("message")} placeholder="Gracias!" />
+            <Label>Message (optional)</Label>
+            <Input {...register("message")} placeholder="Thank you!" />
           </div>
           {serverError && <p className="text-sm text-red-500">{serverError}</p>}
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Transferir"}
+            {isSubmitting ? "Transferring..." : "Transfer"}
           </Button>
         </form>
       </DialogContent>

@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import { UserRoundPlus, MessageSquareCheck } from "lucide-react";
 
 const schema = z.object({
-  email: z.email("Email inválido"),
+  email: z.email("Invalid Email"),
 });
 
 type Form = z.infer<typeof schema>;
@@ -51,7 +51,7 @@ export default function InviteMemberDialog({
       await inviteMemberOrgApi(orgId, data.email);
       setSuccess(true);
       onInvited();
-      toast.success("Usuario invitado Correctamente");
+      toast.success("Guest user Successfully");
       reset();
       setTimeout(() => {
         setSuccess(false);
@@ -59,11 +59,9 @@ export default function InviteMemberDialog({
       }, 1500);
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Error al Invitar al Miembro",
+        error instanceof Error ? error.message : "Error inviting member",
       );
-      setServerError(
-        error instanceof Error ? error.message : "Error al invitar",
-      );
+      setServerError(error instanceof Error ? error.message : "Error inviting");
     }
   };
 
@@ -72,17 +70,17 @@ export default function InviteMemberDialog({
       <DialogTrigger asChild>
         <Button variant="outline" className="gap-2">
           <UserRoundPlus className="h-4 w-4" />
-          Invitar miembro
+          Invite Member
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Invitar miembro</DialogTitle>
+          <DialogTitle>Invite Member</DialogTitle>
         </DialogHeader>
         {success ? (
           <div className="flex items-center justify-center gap-2 py-4 text-sm text-green-600 font-medium">
             <MessageSquareCheck className="h-5 w-5" />
-            <span>Invitación enviada</span>
+            <span>Invitation send</span>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -91,7 +89,7 @@ export default function InviteMemberDialog({
               <Input
                 type="email"
                 {...register("email")}
-                placeholder="trabajador@empresa.com"
+                placeholder="member@openWallet.com"
               />
               {errors.email && (
                 <p className="text-sm text-red-500">{errors.email.message}</p>
@@ -101,7 +99,7 @@ export default function InviteMemberDialog({
               <p className="text-sm text-red-500">{serverError}</p>
             )}
             <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Enviando..." : "Enviar invitación"}
+              {isSubmitting ? "Sending..." : "Send Invitation"}
             </Button>
           </form>
         )}

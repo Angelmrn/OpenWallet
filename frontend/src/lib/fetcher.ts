@@ -56,8 +56,9 @@ export async function fetcher<T>(
     response = await makeRequest(newToken);
   }
   const data = await response.json();
+  console.log("FETCHER: ", data);
   if (!response.ok) {
-    throw new Error(data.messaege || "An error occurred");
+    throw new Error(data.message || "An error occurred");
   }
   return data as T;
 }

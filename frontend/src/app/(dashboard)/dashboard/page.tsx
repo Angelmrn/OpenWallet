@@ -42,19 +42,19 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center gap-2">
             <Building2 />
-            <h1 className="text-2xl font-bold">Mis organizaciones</h1>
+            <h1 className="text-2xl font-bold">My Organizations</h1>
           </div>
-          <p className="text-muted-foreground">Bienvenido, {user?.name}</p>
+          <p className="text-muted-foreground">Welcome, {user?.name}</p>
         </div>
         <CreateOrgDialog onCreated={handleOrgCreated} />
       </div>
 
       {loading ? (
-        <p className="text-muted-foreground">Cargando...</p>
+        <p className="text-muted-foreground">Loading...</p>
       ) : orgs.length === 0 ? (
         <div className="text-center py-16 text-muted-foreground">
-          <p className="text-lg">No tienes organizaciones todavía</p>
-          <p className="text-sm">Crea una o acepta una invitación</p>
+          <p className="text-lg">You don't have organizations yet</p>
+          <p className="text-sm">Create one or accept an invitation</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
