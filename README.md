@@ -9,6 +9,10 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
+![bcrypt](https://img.shields.io/badge/bcrypt-338?style=for-the-badge&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Zustand](https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=zustand&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
 
 > 🇲🇽 Español | 🇺🇸 [English](#english-version)
 
@@ -241,6 +245,48 @@ transactions
   └── toMember → members
 ```
 
+### 📸 Screenshots
+
+### LandingPage
+
+![LandingPage](./docs/screenshots/OW-Landing.png)
+
+### Dashboard
+
+![Dashboard](./docs/screenshots/OW-orgsPage.png)
+
+### OrgPage
+
+![OrgPage](./docs/screenshots/OW-orgPage.png)
+
+### Invite Member
+
+![InviteMember](./docs/screenshots/OW-InviteMember.png)
+
+### Invitation Status
+
+![InvitationStatus](./docs/screenshots/OW-InvitationStatus.png)
+
+### Delete Organization
+
+![DeleteOrg](./docs/screenshots/OW-DeleteOrg.png)
+
+### Reward Member
+
+![RewardMember](./docs/screenshots/OW-RewardDialog.png)
+
+### Transfer to other member
+
+![TransferDialog](./docs/screenshots/OW-TransferDialog.png)
+
+### Delete Member
+
+![DeleteMember](./docs/screenshots/OW-DeleteMemberDialog.png)
+
+### Transactions List
+
+![TransactionsList](./docs/screenshots/OW-TransactionList.png)
+
 ### 🔄 Flujos Importantes
 
 **Registro y verificación de email:**
@@ -430,6 +476,48 @@ transactions
   ├── fromMember → members (optional, null on rewards)
   └── toMember → members
 ```
+
+### 📸 Screenshots
+
+### LandingPage
+
+![LandingPage](./docs/screenshots/OW-Landing.png)
+
+### Dashboard
+
+![Dashboard](./docs/screenshots/OW-orgsPage.png)
+
+### OrgPage
+
+![OrgPage](./docs/screenshots/OW-orgPage.png)
+
+### Invite Member
+
+![InviteMember](./docs/screenshots/OW-InviteMember.png)
+
+### Invitation Status
+
+![InvitationStatus](./docs/screenshots/OW-InvitationStatus.png)
+
+### Delete Organization
+
+![DeleteOrg](./docs/screenshots/OW-DeleteOrg.png)
+
+### Reward Member
+
+![RewardMember](./docs/screenshots/OW-RewardDialog.png)
+
+### Transfer to other member
+
+![TransferDialog](./docs/screenshots/OW-TransferDialog.png)
+
+### Delete Member
+
+![DeleteMember](./docs/screenshots/OW-DeleteMemberDialog.png)
+
+### Transactions List
+
+![TransactionsList](./docs/screenshots/OW-TransactionList.png)
 
 ### 🔄 Key Flows
 
