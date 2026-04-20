@@ -1,4 +1,4 @@
-# RewardFlow 🎁
+# OpenWallet 🎁
 
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
@@ -20,7 +20,7 @@
 
 ### Descripción del Proyecto
 
-**RewardFlow** es una aplicación web full stack de wallet de puntos y recompensas. Los owners crean organizaciones, invitan trabajadores por correo, dan recompensas en puntos y los trabajadores pueden transferirse puntos entre sí.
+**OpenWallet** es una aplicación web full stack de wallet de puntos y recompensas. Los owners crean organizaciones, invitan trabajadores por correo, dan recompensas en puntos y los trabajadores pueden transferirse puntos entre sí.
 
 ### 🛠️ Tech Stack
 
@@ -53,7 +53,7 @@
 ### 📁 Estructura del Proyecto
 
 ```
-RewardFlow/
+OpenWallet/
 ├── backend/
 │   ├── prisma/
 │   │   ├── migrations/
@@ -121,8 +121,8 @@ RewardFlow/
 #### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/rewardflow.git
-cd rewardflow
+git clone https://github.com/tu-usuario/OpenWallet.git
+cd OpenWallet
 ```
 
 #### 2. Configurar el Backend
@@ -135,7 +135,7 @@ npm install
 Crea un archivo `.env` en la carpeta `backend/`:
 
 ```env
-DATABASE_URL="postgresql://usuario:password@localhost:5432/rewardflow"
+DATABASE_URL="postgresql://usuario:password@localhost:5432/OpenWallet"
 ACCESS_SECRET="tu_access_secret"
 REFRESH_SECRET="tu_refresh_secret"
 PORT=1234
@@ -312,7 +312,7 @@ En cada refresh se genera nuevo `accessToken` + nuevo `refreshToken`, el anterio
 
 ### Project Description
 
-**RewardFlow** is a full stack points and rewards wallet web application. Owners create organizations, invite workers by email, give point rewards, and workers can transfer points between each other.
+**OpenWallet** is a full stack points and rewards wallet web application. Owners create organizations, invite workers by email, give point rewards, and workers can transfer points between each other.
 
 ### 🛠️ Tech Stack
 
@@ -353,8 +353,8 @@ En cada refresh se genera nuevo `accessToken` + nuevo `refreshToken`, el anterio
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/rewardflow.git
-cd rewardflow
+git clone https://github.com/your-username/OpenWallet.git
+cd OpenWallet
 ```
 
 #### 2. Backend Setup
@@ -367,7 +367,7 @@ npm install
 Create a `.env` file inside the `backend/` folder:
 
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/rewardflow"
+DATABASE_URL="postgresql://user:password@localhost:5432/OpenWallet"
 ACCESS_SECRET="your_access_secret"
 REFRESH_SECRET="your_refresh_secret"
 PORT=1234
